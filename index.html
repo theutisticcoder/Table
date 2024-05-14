@@ -9,103 +9,114 @@
 
 <body>
     <style>
-        html{
+        html {
             background: darkslategray;
         }
-        h1{
+
+        h1 {
             color: white;
         }
-        *{
+
+        * {
             text-align: center;
             font-family: Georgia, serif;
-         }
-        input{
+        }
+
+        input {
             font-size: 40pt;
             border-radius: 5px;
         }
-        #btn{
+
+        #btn {
             background: blue;
             color: white;
         }
     </style>
     <div id="game">
         <h1>Table - The Periodic Guessing Game!</h1>
-            <input type="text" placeholder="Element Name" id="g1" min="1">
-        </div>
-        <br>
-        <input type="button" value="Check" id="btn">
-        <br>
-        <h1 id="hints"> Hints:<br>
-        </h1>
-        <img height="700" src="https://chemistrytalk.org/wp-content/uploads/2022/04/Periodic-Tablewlogo-scaled.jpg">
-        <script>
-            var parts;
-            var semimetals = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
-            var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]
-            var metals;
-            var checkbtn = document.querySelector("#btn");
-            var hints = document.querySelector("#hints");
-                    var current = document.querySelector("#g1");
-                    current.value = "";
-            fetch("metals.txt").then((res) => res.text()).then((text) => {
-                metals = text.split("\n");
-            })
-            var guesses = 0;
-            var answer;
-            fetch("elements.txt")
-                .then((res) => res.text())
-                .then((text) => {
-                    parts = text.split("\n");
-                    var els = []
-                    parts.forEach(part=> {
-                       els.push(part.split(",")[0].toLowerCase());
-                    })
-                    answer = parts[Math.floor(Math.random() * parts.length)];
-                    checkbtn.onclick = () => {
-                        if(!els.includes(current.value.toLowerCase())){
-                            alert("Please enter a valid element!");
-                            return;
+        <input type="text" placeholder="Element Name" id="g1" min="1">
+    </div>
+    <br>
+    <input type="button" value="Check" id="btn">
+    <br>
+    <h1 id="hints"> Hints:<br>
+    </h1>
+    <img height="700" src="https://chemistrytalk.org/wp-content/uploads/2022/04/Periodic-Tablewlogo-scaled.jpg">
+    <script>
+        var parts;
+        var semimetals = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
+        var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]
+        var metals;
+        var checkbtn = document.querySelector("#btn");
+        var hints = document.querySelector("#hints");
+        var current = document.querySelector("#g1");
+        current.value = "";
+        fetch("metals.txt").then((res) => res.text()).then((text) => {
+            metals = text.split("\n");
+        })
+        var guesses = 0;
+        var answer;
+        fetch("elements.txt")
+            .then((res) => res.text())
+            .then((text) => {
+                parts = text.split("\n");
+                var els = []
+                parts.forEach(part => {
+                    els.push(part.split(",")[0].toLowerCase());
+                })
+                answer = parts[Math.floor(Math.random() * parts.length)];
+                checkbtn.onclick = () => {
+                    if (!els.includes(current.value.toLowerCase())) {
+                        alert("Please enter a valid element!");
+                        return;
+                    }
+                    guesses++;
+                    current.readOnly = true;
+                    if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
+                        current.style.background = "#83BC67";
+                        setTimeout(() => {
+                            var check = confirm("Play Again?");
+                            if (check == true) location.reload();
+                            else {
+                                current.readOnly = true;
+                                checkbtn.readOnly = true;
+                            }
+                        })
+                    }
+                    else {
+                        current.style.background = "#ff7270";
+                        var help = parseInt(answer.split(",")[2]);
+
+                        if (guesses === 1) hints.append("The atomic number is in between " + (help - 10) + " and " + (help + 10) + ".\n")
+                        if (guesses === 2) {
+                            if (metals.includes(answer.split(",")[0])) help = "metals";
+                            else if (nonmetals.includes(answer.split(",")[0])) help = "nonmetals";
+                            else help = "semimetals";
+                            hints.append("The element is in the group " + help + ".\n")
                         }
-                        guesses++;
-                        current.readOnly = true;
-                        if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
-                            alert("You won!");
-                            current.style.background = "#83BC67";
+                        if (guesses === 3) {
+                            hints.append("The element is abbreviated to " + answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0, 1) + ".\n")
+                        }
+                        if (guesses < 4) {
+                            current = current.cloneNode();
+                            current.style.background = "white";
+                            current.readOnly = false;
+                            var br = document.createElement("br");
+                            document.getElementById("game").appendChild(br);
+                            document.getElementById("game").appendChild(current);
+                            current.value = "";
                         }
                         else {
-                            current.style.background = "#ff7270";
-                            var help = parseInt(answer.split(",")[2]);
+                            alert("The answer was " + answer.split(",")[0]);
 
-                            if (guesses === 1) hints.append("The atomic number is in between " + (help - 10) + " and " + (help + 10) + ".\n")
-                            if (guesses === 2) {
-                                if (metals.includes(answer.split(",")[0])) help = "metals";
-                                else if (nonmetals.includes(answer.split(",")[0])) help = "nonmetals";
-                                else help = "semimetals";
-                                hints.append("The element is in the group " + help + ".\n")
-                            }
-                            if(guesses === 3){
-                                hints.append("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0,1) + ".\n")
-                            }
-                            if (guesses < 4) {
-                                current = current.cloneNode();
-                                current.style.background = "white";
-                                current.readOnly = false;
-                                var br = document.createElement("br");
-                                document.getElementById("game").appendChild(br);
-                                document.getElementById("game").appendChild(current);
-                                current.value = "";
-                            }
-                            else{
-                                alert("The answer was " + answer.split(",")[0]);
-
-                            }
                         }
-
                     }
-                })
-                .catch((e) => console.error(e));
 
-        </script>
+                }
+            })
+            .catch((e) => console.error(e));
+
+    </script>
 </body>
 
 </html>

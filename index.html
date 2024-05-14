@@ -35,6 +35,8 @@
         <br>
         <input type="button" value="Check" id="btn">
         <br>
+        <h1 id="hints"> Hints:<br>
+        </h1>
         <img height="700" src="https://chemistrytalk.org/wp-content/uploads/2022/04/Periodic-Tablewlogo-scaled.jpg">
         <script>
             var parts;
@@ -42,6 +44,7 @@
             var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]
             var metals;
             var checkbtn = document.querySelector("#btn");
+            var hints = document.querySelector("#hints");
                     var current = document.querySelector("#g1");
                     current.value = "";
             fetch("metals.txt").then((res) => res.text()).then((text) => {
@@ -66,15 +69,15 @@
                             current.style.background = "#ff7270";
                             var help = parseInt(answer.split(",")[2]);
 
-                            if (guesses === 1) alert("The atomic number is in between " + (help - 10) + " and " + (help + 10) + ".")
+                            if (guesses === 1) hints.append("The atomic number is in between " + (help - 10) + " and " + (help + 10) + ".\n")
                             if (guesses === 2) {
                                 if (metals.includes(answer.split(",")[0])) help = "metals";
                                 else if (nonmetals.includes(answer.split(",")[0])) help = "nonmetals";
                                 else help = "semimetals";
-                                alert("The element is in the group " + help + ".")
+                                hints.append("The element is in the group " + help + ".\n")
                             }
                             if(guesses === 3){
-                                alert("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0,1) + ".")
+                                hints.append("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0,1) + ".\n")
                             }
                             if (guesses < 4) {
                                 current = current.cloneNode();

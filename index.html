@@ -57,8 +57,14 @@
                 .then((text) => {
                     parts = text.split("\n");
                     answer = parts[Math.floor(Math.random() * parts.length)];
-                    
+                    parts.forEach(part=> {
+                        part = part.toLowerCase();
+                    })
                     checkbtn.onclick = () => {
+                        if(!parts.includes( "," + current.value.toLowerCase() + ",")){
+                            alert("Please enter a valid element!");
+                            return;
+                        }
                         guesses++;
                         current.readOnly = true;
                         if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {

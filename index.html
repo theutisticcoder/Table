@@ -61,7 +61,7 @@
                         part = part.toLowerCase();
                     })
                     checkbtn.onclick = () => {
-                        if(!parts.includes( "," + current.value.toLowerCase() + ",")){
+                        if(!parts.includes( "," + current.value.toLowerCase() + ",") || current.value.toLowerCase() === "hydrogen"){
                             alert("Please enter a valid element!");
                             return;
                         }

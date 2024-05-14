@@ -33,7 +33,7 @@
                     parts = text.split("\n");
                     answer = parts[Math.floor(Math.random() * parts.length)];
                     
-                    inputarea.onsubmit = () => {
+                    inputarea.onclick = () => {
                         guesses++;
                         current.readOnly = true;
                         if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {

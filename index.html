@@ -21,7 +21,6 @@
             var metals;
             var checkbtn = document.querySelector("#btn");
                     var current = document.querySelector("#g1");
-                    var inputarea = document.querySelector("form");
             fetch("metals.txt").then((res) => res.text()).then((text) => {
                 metals = text.split("\n");
             })
@@ -33,7 +32,7 @@
                     parts = text.split("\n");
                     answer = parts[Math.floor(Math.random() * parts.length)];
                     
-                    inputarea.onclick = () => {
+                    checkbtn.onclick = () => {
                         guesses++;
                         current.readOnly = true;
                         if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
@@ -47,7 +46,7 @@
                                 if (metals.includes(answer.split(",")[0])) help = "metals";
                                 else if (nonmetals.includes(answer.split(",")[0])) help = "nonmetals";
                                 else help = "semimetals";
-                                alert("The element is in the group" + help + ".")
+                                alert("The element is in the group " + help + ".")
                             }
                             if(guesses === 3){
                                 alert("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].split(0,1) + ".")

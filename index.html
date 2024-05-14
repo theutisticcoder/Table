@@ -14,6 +14,7 @@
         </div>
         <br>
         <input type="button" value="Check" id="btn">
+        <img height="200" src="https://cdn.britannica.com/45/7445-050-BB332C27/version-periodic-table-elements.jpg">
         <script>
             var parts;
             var semimetals = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
@@ -49,12 +50,9 @@
                                 alert("The element is in the group " + help + ".")
                             }
                             if(guesses === 3){
-                                alert("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].split(0,1) + ".")
+                                alert("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].splice(0,1) + ".")
                             }
-                            if(guesses === 4){
-                                alert("The element is abbreviated to "  +answer.split(",")[1] + ".")
-                            }
-                            if (guesses < 5) {
+                            if (guesses < 4) {
                                 current = current.cloneNode();
                                 current.readOnly = false;
                                 var br = document.createElement("br");

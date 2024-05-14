@@ -56,9 +56,19 @@
         })
         var guesses = 0;
         var answer;
+        document.onkeydown = () => {
+            if (e.key == "Enter") {
+                checkbtn.click()
+            }
+        }
         fetch("elements.txt")
             .then((res) => res.text())
             .then((text) => {
+                document.onkeydown = () => {
+                    if (e.key == "Enter") {
+                        checkbtn.click()
+                    }
+                }
                 parts = text.split("\n");
                 var els = []
                 parts.forEach(part => {

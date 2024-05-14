@@ -60,8 +60,10 @@
                         current.readOnly = true;
                         if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
                             alert("You won!");
+                            current.style.background = "#83BC67";
                         }
                         else {
+                            current.style.background = "#ff7270";
                             var help = parseInt(answer.split(",")[2]);
 
                             if (guesses === 1) alert("The atomic number is in between " + (help - 10) + " and " + (help + 10) + ".")
@@ -76,6 +78,7 @@
                             }
                             if (guesses < 4) {
                                 current = current.cloneNode();
+                                current.style.background = "white";
                                 current.readOnly = false;
                                 var br = document.createElement("br");
                                 document.getElementById("game").appendChild(br);

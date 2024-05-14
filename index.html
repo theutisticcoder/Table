@@ -56,12 +56,13 @@
                 .then((res) => res.text())
                 .then((text) => {
                     parts = text.split("\n");
-                    answer = parts[Math.floor(Math.random() * parts.length)];
+                    var els = []
                     parts.forEach(part=> {
-                        part = part.toLowerCase();
+                       els.push(part.split(",")[0].toLowerCase);
                     })
+                    answer = parts[Math.floor(Math.random() * parts.length)];
                     checkbtn.onclick = () => {
-                        if(!parts.includes(current.value.toLowerCase())){
+                        if(!els.includes(current.value.toLowerCase())){
                             alert("Please enter a valid element!");
                             return;
                         }

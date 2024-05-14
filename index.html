@@ -51,7 +51,7 @@
                                 alert("The element is in the group " + help + ".")
                             }
                             if(guesses === 3){
-                                alert("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].splice(0,1) + ".")
+                                alert("The element is abbreviated to "  +answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0,1) + ".")
                             }
                             if (guesses < 4) {
                                 current = current.cloneNode();

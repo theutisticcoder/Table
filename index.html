@@ -60,7 +60,7 @@
         fetch("elements.txt")
             .then((res) => res.text())
             .then((text) => {
-                document.onkeydown = () => {
+                document.onkeydown = (e) => {
                     if (e.key == "Enter") {
                         checkbtn.click()
                     }

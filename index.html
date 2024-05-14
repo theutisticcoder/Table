@@ -19,19 +19,20 @@
             var semimetals = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
             var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]
             var metals;
+            var checkbtn = document.querySelector("#btn");
+                    var current = document.querySelector("#g1");
+                    var inputarea = document.querySelector("form");
             fetch("metals.txt").then((res) => res.text()).then((text) => {
                 metals = text.split("\n");
             })
+            var guesses = 0;
             var answer;
             fetch("elements.txt")
                 .then((res) => res.text())
                 .then((text) => {
-                    var guesses = 0;
                     parts = text.split("\n");
                     answer = parts[Math.floor(Math.random() * parts.length)];
-                    var checkbtn = document.querySelector("#btn");
-                    var current = document.querySelector("#g1");
-                    var inputarea = document.querySelector("form");
+                    
                     inputarea.onsubmit = () => {
                         guesses++;
                         current.readOnly = true;

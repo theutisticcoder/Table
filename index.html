@@ -60,7 +60,7 @@
         fetch("elements.txt")
             .then((res) => res.text())
             .then((text) => {
-                document.onkeydown = (e) => {
+                current.onkeydown = (e) => {
                     if (e.key == "Enter") {
                         checkbtn.click()
                     }
@@ -85,7 +85,7 @@
                             if (check == true) location.reload();
                             else {
                                 current.readOnly = true;
-                                checkbtn.readOnly = true;
+                                checkbtn.disabled = true;
                             }
                         })
                     }

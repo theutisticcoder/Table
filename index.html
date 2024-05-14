@@ -11,7 +11,9 @@
     <div id="game">
         <h1>Table - The Periodic Guessing Game!</h1>
             <input type="text" id="g1" min="1">
-            <input type="button" value="Check" id="btn">
+        </div>
+        <br>
+        <input type="button" value="Check" id="btn">
         <script>
             var parts;
             var semimetals = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
@@ -55,6 +57,8 @@
                             if (guesses < 5) {
                                 current = current.cloneNode();
                                 current.readOnly = false;
+                                var br = document.createElement("br");
+                                document.getElementById("game").appendChild(br);
                                 document.getElementById("game").appendChild(current);
                                 current.value = "";
                             }
@@ -69,7 +73,6 @@
                 .catch((e) => console.error(e));
 
         </script>
-    </div>
 </body>
 
 </html>

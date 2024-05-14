@@ -53,6 +53,9 @@
                                 alert("The element is abbreviated to "  +answer.split(",")[1] + ".")
                             }
                             if (guesses < 5) {
+                                current = current.cloneNode();
+                                current.readOnly = false;
+                                document.getElementById("game").appendChild(current);
                                 current.value = "";
                             }
                             else{

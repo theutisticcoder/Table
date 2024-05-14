@@ -30,7 +30,7 @@
     </style>
     <div id="game">
         <h1>Table - The Periodic Guessing Game!</h1>
-            <input type="text" id="g1" min="1">
+            <input type="text" placeholder="Element Name" id="g1" min="1">
         </div>
         <br>
         <input type="button" value="Check" id="btn">
@@ -43,6 +43,7 @@
             var metals;
             var checkbtn = document.querySelector("#btn");
                     var current = document.querySelector("#g1");
+                    current.value = "";
             fetch("metals.txt").then((res) => res.text()).then((text) => {
                 metals = text.split("\n");
             })

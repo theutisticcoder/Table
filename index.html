@@ -56,7 +56,7 @@
         })
         var guesses = 0;
         var answer;
-        
+
         fetch("elements.txt")
             .then((res) => res.text())
             .then((text) => {
@@ -80,14 +80,12 @@
                     current.readOnly = true;
                     if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
                         current.style.background = "#83BC67";
-                        setTimeout(() => {
                             var check = confirm("Play Again?");
                             if (check == true) location.reload();
                             else {
                                 current.readOnly = true;
                                 checkbtn.disabled = true;
                             }
-                        })
                     }
                     else {
                         current.style.background = "#ff7270";
@@ -104,7 +102,13 @@
                             hints.append("The element is abbreviated to " + answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0, 1) + ".\n")
                         }
                         if (guesses < 4) {
+
                             current = current.cloneNode();
+                            current.onkeydown = (e) => {
+                                if (e.key == "Enter") {
+                                    checkbtn.click()
+                                }
+                            }
                             current.style.background = "white";
                             current.readOnly = false;
                             var br = document.createElement("br");
@@ -114,7 +118,12 @@
                         }
                         else {
                             alert("The answer was " + answer.split(",")[0]);
-
+                            var check = confirm("Play Again?");
+                            if (check == true) location.reload();
+                            else {
+                                current.readOnly = true;
+                                checkbtn.disabled = true;
+                            }
                         }
                     }
 

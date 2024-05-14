@@ -11,7 +11,7 @@
     <div id="game">
         <h1>Table - The Periodic Guessing Game!</h1>
         <form>
-            <input type="text" id="g1" min="1" max="2">
+            <input type="text" id="g1" min="1">
             <input type="submit" value="Check" id="btn">
         </form>
         <script>
@@ -35,7 +35,7 @@
                     inputarea.onsubmit = () => {
                         guesses++;
                         current.readOnly = true;
-                        if (answer === current.value) {
+                        if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
                             alert("You won!");
                         }
                         else {

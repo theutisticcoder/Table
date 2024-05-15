@@ -39,10 +39,19 @@
     <br>
     <input type="button" value="Check" id="btn">
     <br>
+    <h1>Show Image</h1><input type="checkbox" onchange="showhide(this)" id="show">
+    <br>
     <h1 id="hints"> Hints:<br>
     </h1>
-    <img height="700" src="https://chemistrytalk.org/wp-content/uploads/2022/04/Periodic-Tablewlogo-scaled.jpg">
+
+    <img hidden height="700" src="https://chemistrytalk.org/wp-content/uploads/2022/04/Periodic-Tablewlogo-scaled.jpg">
     <script>
+        function showhide(e){
+            if(e.checked == true){
+                document.querySelector("img").hidden = false;
+            }
+            else document.querySelector("img").hidden = true;
+        }
         var parts;
         var semimetals = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
         var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]

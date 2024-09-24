@@ -108,7 +108,8 @@
                             hints.append("The atomic number is in between 98 and 118.\n")
                             }
                             else{
-                            hints.append("The atomic number is in between " + (help - 10) + " and " + (help + 10) + ".\n")
+                                var num = Math.floor(Math.random()*12)
+                            hints.append("The atomic number is in between " + (help - num) + " and " + (help + (20-num)) + ".\n")
                             }
                         }
                         if (guesses === 2) {

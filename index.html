@@ -142,10 +142,10 @@ const period7 = [
                         var help = parseInt(answer.split(",")[2]);
                         
                         if (guesses === 1) {
-                            if(help-10 <= 0){
+                            if(help-10 < 0){
                             hints.append("The atomic number is in between 1 and 20.\n")
                             }
-                             if(help+10 >= 118){
+                             if(help+10 > 118){
                             hints.append("The atomic number is in between 98 and 118.\n")
                             }
                             else{

@@ -183,7 +183,10 @@ const period7 = [
                             }
                             hints.append("The element is in period " + period )
                         }
-                        if (guesses < 4) {
+                        else if(guesses ===4){
+                            hints.append("The element abbreviates to " + answer.split(",")[1])
+                        }
+                        if (guesses < 5) {
 
                             current = current.cloneNode();
                             current.onkeydown = (e) => {
@@ -198,6 +201,7 @@ const period7 = [
                             document.getElementById("game").appendChild(current);
                             current.value = "";
                         }
+                        
                         else {
                             alert("The answer was " + answer.split(",")[0]);
                             var check = confirm("Play Again?");

@@ -65,6 +65,47 @@
         })
         var guesses = 0;
         var answer;
+        const period1 = ["Hydrogen", "Helium"];
+        const period2 = [
+  "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", 
+  "Oxygen", "Fluorine", "Neon"
+];
+const period3 = [
+  "Sodium", "Magnesium", "Aluminum", "Silicon", "Phosphorus", 
+  "Sulfur", "Chlorine", "Argon"
+];
+const period4 = [
+  "Potassium", "Calcium", "Scandium", "Titanium", "Vanadium", 
+  "Chromium", "Manganese", "Iron", "Cobalt", "Nickel", "Copper", 
+  "Zinc", "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine", 
+  "Krypton"
+];
+const period5 = [
+  "Rubidium", "Strontium", "Yttrium", "Zirconium", "Niobium", 
+  "Molybdenum", "Technetium", "Ruthenium", "Rhodium", "Palladium", 
+  "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Tellurium", 
+  "Iodine", "Xenon"
+];
+const period6 = [
+  "Cesium", "Barium", "Lanthanum", "Cerium", "Praseodymium", 
+  "Neodymium", "Promethium", "Samarium", "Europium", "Gadolinium", 
+  "Terbium", "Dysprosium", "Holmium", "Erbium", "Thulium", 
+  "Ytterbium", "Lutetium", "Hafnium", "Tantalum", "Tungsten", 
+  "Rhenium", "Osmium", "Iridium", "Platinum", "Gold", "Mercury", 
+  "Thallium", "Lead", "Bismuth", "Polonium", "Astatine", 
+  "Radon"
+];
+const period7 = [
+  "Francium", "Radium", "Actinium", "Thorium", "Protactinium", 
+  "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", 
+  "Berkelium", "Californium", "Einsteinium", "Fermium", 
+  "Mendelevium", "Nobelium", "Lawrencium", "Rutherfordium", 
+  "Dubnium", "Seaborgium", "Bohrium", "Hassium", 
+  "Meitnerium", "Darmstadtium", "Roentgenium", "Copernicium", 
+  "Nihonium", "Flerovium", "Moscovium", "Livermorium", 
+  "Tennessine", "Oganesson"
+];
+
 
         fetch("elements.txt")
             .then((res) => res.text())
@@ -119,7 +160,28 @@
                             hints.append("The element is in the group " + help + ".\n")
                         }
                         if (guesses === 3) {
-                            hints.append("The element is abbreviated to " + answer.split(",")[1].length + " letters and starts with the letter " + answer.split(",")[0].slice(0, 1) + ".\n")
+                            if(period1.includes(answer.split(",")[0])){
+                                period = 1
+                            }
+                            if(period2.includes(answer.split(",")[0])){
+                                period = 2
+                            }
+                            if(period3.includes(answer.split(",")[0])){
+                                period = 3
+                            }
+                            if(period4.includes(answer.split(",")[0])){
+                                period = 4
+                            }
+                            if(period5.includes(answer.split(",")[0])){
+                                period = 5
+                            }
+                            if(period6.includes(answer.split(",")[0])){
+                                period = 6
+                            }
+                            if(period7.includes(answer.split(",")[0])){
+                                period = 7
+                            }
+                            hints.append("The element is in period " + period )
                         }
                         if (guesses < 4) {
 

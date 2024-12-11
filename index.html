@@ -130,7 +130,6 @@ const period7 = [
                     current.readOnly = true;
                     if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
                         current.style.background = "#83BC67";
-                            var check = confirm("You won! Play Again?");
                             if (check == true) location.reload();
                             else {
                                 current.readOnly = true;
@@ -204,7 +203,6 @@ const period7 = [
                         
                         else {
                             alert("The answer was " + answer.split(",")[0]);
-                            var check = confirm("Play Again?");
                             if (check == true) location.reload();
                             else {
                                 current.readOnly = true;

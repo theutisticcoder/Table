@@ -129,15 +129,17 @@
                         return;
                     }
                     guesses++;
-                    current.readOnly = true;
                     if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
                         current.style.background = "#83BC67";
-                            current.readOnly = true;
-                            checkbtn.disabled = true;
+                        checkbtn.disabled = true;
+                        current.readOnly = true;
+
                         alert("You Got it!");
                     }
                     else {
                         current.style.background = "#ff7270";
+                        current.readOnly = true;
+
                         var help = parseInt(answer.split(",")[2]);
 
                         if (guesses === 1) {

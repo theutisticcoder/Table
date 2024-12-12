@@ -154,9 +154,9 @@
                             }
                         }
                         if (guesses === 2) {
-                            if (metals.includes(answer.split(",")[0])) help = "metals";
+                            if (m.includes(answer.split(",")[0])) help = "metalloids";
                             else if (nonmetals.includes(answer.split(",")[0])) help = "nonmetals";
-                            else help = "metalloids";
+                            else help = "metals";
                             hints.append("The element is in the " + help + ".\n")
                         }
                         if (guesses === 3) {

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="iconn.png">
+    </link>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+</head>
+
+<body>
+    <style>
+        html {
+            background: darkslategray;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        * {
+            text-align: center;
+            font-family: Georgia, serif;
+        }
+
+        input {
+            font-size: 40pt;
+            border-radius: 5px;
+        }
+
+        #btn {
+            background: blue;
+            color: white;
+        }
+    </style>
+    <div id="game">
+        <h1>Table - The Periodic Guessing Game!</h1>
+        <input type="text" placeholder="Element Name" id="g1" min="1">
+    </div>
+    <br>
+    <input type="button" value="Check" id="btn">
+    <br>
+    <h1>Show Table <input style="height: 20px; width: 20px;" type="checkbox" onchange="showhide(this)" id="show"></h1>
+    <br>
+    <h1 id="hints"> Hints:<br>
+    </h1>
+
+    <img hidden height="700" src="table.jpg">
+    <script>
+        // Group 1: Alkali Metals
+const group1 = ['H', 'Li', 'Na', 'K', 'Rb', 'Cs', 'Fr'];
+
+// Group 2: Alkaline Earth Metals
+const group2 = ['Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra'];
+
+// Group 13 (Group 3 in some notations): Boron Group
+const group13 = ['B', 'Al', 'Ga', 'In', 'Tl'];
+
+// Group 14 (Group 4 in some notations): Carbon Group
+const group14 = ['C', 'Si', 'Ge', 'Sn', 'Pb'];
+
+// Group 15 (Group 5 in some notations): Nitrogen Group
+const group15 = ['N', 'P', 'As', 'Sb', 'Bi'];
+
+// Group 16 (Group 6 in some notations): Oxygen Group (Chalcogens)
+const group16 = ['O', 'S', 'Se', 'Te', 'Po'];
+
+// Group 17 (Group 7 in some notations): Halogens
+const group17 = ['F', 'Cl', 'Br', 'I', 'At'];
+
+// Group 18 (Group 8 in some notations): Noble Gases
+const group18 = ['He', 'Ne', 'Ar', 'Kr', 'Xe', 'Rn'];
+
+        // Elements that form positive ions (cations)
+const cations = ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr', 'Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra', 'Al', 'Ga', 'In', 'Tl', 'Sn', 'Pb', 'Bi'];
+
+// Elements that form negative ions (anions)
+const anions = ['H', 'B', 'C', 'N', 'O', 'F', 'Si', 'P', 'S', 'Cl', 'Se', 'Br', 'Te', 'I', 'At'];
+
+// Elements that commonly form covalent bonds
+const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 'Cl', 'Br', 'I', 'H'];
+
+        function showhide(e) {
+            if (e.checked == true) {
+                document.querySelector("img").hidden = false;
+            }
+            else document.querySelector("img").hidden = true;
+        }
+        var parts;
+        var m = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
+        var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]
+        var metals;
+        var checkbtn = document.querySelector("#btn");
+        var hints = document.querySelector("#hints");
+        var current = document.querySelector("#g1");
+        current.value = "";
+        fetch("metals.txt").then((res) => res.text()).then((text) => {
+            metals = text.split("\n");
+        })
+        var guesses = 0;
+        var answer;
+        const period1 = ["Hydrogen", "Helium"];
+        const period2 = [
+            "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen",
+            "Oxygen", "Fluorine", "Neon"
+        ];
+        const period3 = [
+            "Sodium", "Magnesium", "Aluminum", "Silicon", "Phosphorus",
+            "Sulfur", "Chlorine", "Argon"
+        ];
+        const period4 = [
+            "Potassium", "Calcium", "Scandium", "Titanium", "Vanadium",
+            "Chromium", "Manganese", "Iron", "Cobalt", "Nickel", "Copper",
+            "Zinc", "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine",
+            "Krypton"
+        ];
+        const period5 = [
+            "Rubidium", "Strontium", "Yttrium", "Zirconium", "Niobium",
+            "Molybdenum", "Technetium", "Ruthenium", "Rhodium", "Palladium",
+            "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Tellurium",
+            "Iodine", "Xenon"
+        ];
+        const period6 = [
+            "Cesium", "Barium", "Lanthanum", "Cerium", "Praseodymium",
+            "Neodymium", "Promethium", "Samarium", "Europium", "Gadolinium",
+            "Terbium", "Dysprosium", "Holmium", "Erbium", "Thulium",
+            "Ytterbium", "Lutetium", "Hafnium", "Tantalum", "Tungsten",
+            "Rhenium", "Osmium", "Iridium", "Platinum", "Gold", "Mercury",
+            "Thallium", "Lead", "Bismuth", "Polonium", "Astatine",
+            "Radon"
+        ];
+        const period7 = [
+            "Francium", "Radium", "Actinium", "Thorium", "Protactinium",
+            "Uranium", "Neptunium", "Plutonium", "Americium", "Curium",
+            "Berkelium", "Californium", "Einsteinium", "Fermium",
+            "Mendelevium", "Nobelium", "Lawrencium", "Rutherfordium",
+            "Dubnium", "Seaborgium", "Bohrium", "Hassium",
+            "Meitnerium", "Darmstadtium", "Roentgenium", "Copernicium",
+            "Nihonium", "Flerovium", "Moscovium", "Livermorium",
+            "Tennessine", "Oganesson"
+        ];
+
+
+        fetch("elements.txt")
+            .then((res) => res.text())
+            .then((text) => {
+                current.onkeydown = (e) => {
+                    if (e.key == "Enter") {
+                        checkbtn.click()
+                    }
+                }
+                parts = text.split("\n");
+                var els = []
+                parts.forEach(part => {
+                    els.push(part.split(",")[0].toLowerCase());
+                })
+                answer = parts[Math.floor(Math.random() * parts.length)];
+                checkbtn.onclick = () => {
+                    if (!els.includes(current.value.toLowerCase())) {
+                        alert("Please enter a valid element!");
+                        return;
+                    }
+                    guesses++;
+                    if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
+                        current.style.background = "#83BC67";
+                        checkbtn.disabled = true;
+                        current.readOnly = true;
+
+                    }
+                    else {
+                        current.style.background = "#ff7270";
+                        current.readOnly = true;
+
+                        var help = parseInt(answer.split(",")[2]);
+
+                        if (guesses === 1) {
+                            if (help - 10 < 0) {
+                                hints.append("The atomic number is in between 1 and 20.\n")
+                            }
+                            else if (help + 10 > 118) {
+                                hints.append("The atomic number is in between 98 and 118.\n")
+                            }
+                            else {
+                                var num = Math.floor(Math.random() * 10)
+                                hints.append("The atomic number is in between " + (help - num) + " and " + (help + (20 - num)) + ".\n")
+                            }
+                        }
+                        if (guesses === 2) {
+                            if (covalentElements.includes(answer.split(",")[0])) help = "the atom would forms a covalent bond";
+                            else if (cations.includes(answer.split(",")[0])) help = "the atom would become a cation";
+                            else help = "the atom would become an anion";
+                            hints.append(help)
+                        }
+                        if (guesses === 3) {
+                            if (period1.includes(answer.split(",")[0])) {
+                                period = 1
+                            }
+                            if (period2.includes(answer.split(",")[0])) {
+                                period = 2
+                            }
+                            if (period3.includes(answer.split(",")[0])) {
+                                period = 3
+                            }
+                            if (period4.includes(answer.split(",")[0])) {
+                                period = 4
+                            }
+                            if (period5.includes(answer.split(",")[0])) {
+                                period = 5
+                            }
+                            if (period6.includes(answer.split(",")[0])) {
+                                period = 6
+                            }
+                            if (period7.includes(answer.split(",")[0])) {
+                                period = 7
+                            }
+                            hints.append("The element is in period " + period + "\n")
+                        }
+                        else if (guesses === 4) {
+                            const transitionElements = [
+                                "Scandium", "Titanium", "Vanadium", "Chromium", "Manganese",
+                                "Iron", "Cobalt", "Nickel", "Copper", "Zinc", "Yttrium",
+                                "Zirconium", "Niobium", "Molybdenum", "Technetium",
+                                "Ruthenium", "Rhodium", "Palladium", "Silver", "Cadmium",
+                                "Hafnium", "Tantalum", "Tungsten", "Rhenium", "Osmium",
+                                "Iridium", "Platinum", "Gold", "Mercury", "Rutherfordium",
+                                "Dubnium", "Seaborgium", "Bohrium", "Hassium",
+                                "Meitnerium", "Darmstadtium", "Roentgenium", "Copernicium"
+                            ];
+                            const representativeElements = [
+                                "Hydrogen", "Helium", "Lithium", "Beryllium", "Boron",
+                                "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon",
+                                "Sodium", "Magnesium", "Aluminum", "Silicon", "Phosphorus",
+                                "Sulfur", "Chlorine", "Argon", "Potassium", "Calcium",
+                                "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine",
+                                "Krypton", "Rubidium", "Strontium", "Indium", "Tin",
+                                "Antimony", "Tellurium", "Iodine", "Xenon", "Cesium",
+                                "Barium", "Thallium", "Lead", "Bismuth", "Polonium",
+                                "Astatine", "Radon", "Francium", "Radium"
+                            ];
+                            if(representativeElements.includes(answer.split(",")[0])){
+                                hints.append("The answer has an easy way to calculate its valence electrons")
+                            }
+                            else{
+                                hints.append("The answer's number of valence electrons is hard to calculate")
+
+                            }
+                        }
+                        else if (guesses === 5) {
+                            hints.append("The element's abbrevieation starts with " + answer.split(",")[1].substr(0,1))
+                        }
+                        if (guesses < 8) {
+
+                            current = current.cloneNode();
+                            current.onkeydown = (e) => {
+                                if (e.key == "Enter") {
+                                    checkbtn.click()
+                                }
+                            }
+                            current.style.background = "white";
+                            current.readOnly = false;
+                            var br = document.createElement("br");
+                            document.getElementById("game").appendChild(br);
+                            document.getElementById("game").appendChild(current);
+                            current.value = "";
+                        }
+                        if (guesses === 7) {
+                            if (group1.includes(answer.split(",")[0])) {
+                                period = 1
+                            }
+                            if (group2.includes(answer.split(",")[0])) {
+                                period = 2
+                            }
+                            if (group13.includes(answer.split(",")[0])) {
+                                period = 3
+                            }
+                            if (group14.includes(answer.split(",")[0])) {
+                                period = 4
+                            }
+                            if (group15.includes(answer.split(",")[0])) {
+                                period = 5
+                            }
+                            if (group16.includes(answer.split(",")[0])) {
+                                period = 6
+                            }
+                            if (group17.includes(answer.split(",")[0])) {
+                                period = 7
+                            }
+                            if (group18.includes(answer.split(",")[0])) {
+                                period = 8
+                            }
+                            else{
+                                hints.append("The element is found in groups 3-12\n")
+                                return
+                            }
+                            hints.append("This representative element has " + period + " valence electrons\n")
+                        }
+
+                        else {
+                            alert("The answer was " + answer.split(",")[0]);
+                            if (check == true) location.reload();
+                            else {
+                                current.readOnly = true;
+                                checkbtn.disabled = true;
+                            }
+                        }
+                    }
+
+                }
+            })
+            .catch((e) => console.error(e));
+
+    </script>
+</body>
+
+</html>

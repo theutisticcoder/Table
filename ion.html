@@ -247,25 +247,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
 
                             }
                         }
-                        else if (guesses === 5) {
-                            hints.append("The element's abbrevieation starts with " + answer.split(",")[1].substr(0,1))
-                        }
-                        if (guesses < 8) {
-
-                            current = current.cloneNode();
-                            current.onkeydown = (e) => {
-                                if (e.key == "Enter") {
-                                    checkbtn.click()
-                                }
-                            }
-                            current.style.background = "white";
-                            current.readOnly = false;
-                            var br = document.createElement("br");
-                            document.getElementById("game").appendChild(br);
-                            document.getElementById("game").appendChild(current);
-                            current.value = "";
-                        }
-                        if (guesses === 7) {
+                        if (guesses === 5) {
                             if (group1.includes(answer.split(",")[0])) {
                                 group = 1
                             }
@@ -306,6 +288,22 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             hints.append("the element will share electrons with another ion to get a full set of eight valence electrons")
                         }
                         }
+                        if (guesses < 6) {
+
+                            current = current.cloneNode();
+                            current.onkeydown = (e) => {
+                                if (e.key == "Enter") {
+                                    checkbtn.click()
+                                }
+                            }
+                            current.style.background = "white";
+                            current.readOnly = false;
+                            var br = document.createElement("br");
+                            document.getElementById("game").appendChild(br);
+                            document.getElementById("game").appendChild(current);
+                            current.value = "";
+                        }
+                       
                       
 
                         else {

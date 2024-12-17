@@ -88,6 +88,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
             else document.querySelector("img").hidden = true;
         }
         var parts;
+        var group;
         var m = ['Boron', 'Silicon', 'Germanium', 'Arsenic', 'Antimony', 'Tellurium', 'Polonium']
         var nonmetals = ["Hydrogen", "Helium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon", "Silicon", "Phosphorous", "Sulfur", "Chlorine", "Argon", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton", "Antimony", "Tellurium", "Iodine", "Xenon", "Radon"]
         var metals;
@@ -266,35 +267,46 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                         }
                         if (guesses === 7) {
                             if (group1.includes(answer.split(",")[0])) {
-                                period = 1
+                                group = 1
                             }
                             if (group2.includes(answer.split(",")[0])) {
-                                period = 2
+                                group = 2
                             }
                             if (group13.includes(answer.split(",")[0])) {
-                                period = 3
+                                group = 3
                             }
                             if (group14.includes(answer.split(",")[0])) {
-                                period = 4
+                                group = 4
                             }
                             if (group15.includes(answer.split(",")[0])) {
-                                period = 5
+                                group = 5
                             }
                             if (group16.includes(answer.split(",")[0])) {
-                                period = 6
+                                group = 6
                             }
                             if (group17.includes(answer.split(",")[0])) {
-                                period = 7
+                                group = 7
                             }
                             if (group18.includes(answer.split(",")[0])) {
-                                period = 8
+                                group = 8
                             }
                             else{
-                                hints.append("The element is found in groups 3-12\n")
+                                hints.append("The element's abbrevieation starts with " + answer.split(",")[1].substr(0,1))
                                 return
                             }
-                            hints.append("This representative element has " + period + " valence electrons\n")
+                            if(group > 4){
+                            hints.append("the atom will gain " + (8 - group) + " electrons");
+
                         }
+                        else if(group < 4){
+                            hints.append("the atom will lose " + (group) + " electrons");
+                            
+                        }
+                        else{
+                            hints.append("the element will share electrons with another ion to get a full set of eight valence electrons")
+                        }
+                        }
+                      
 
                         else {
                             alert("The answer was " + answer.split(",")[0]);

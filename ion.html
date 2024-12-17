@@ -176,10 +176,10 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                         var help = parseInt(answer.split(",")[2]);
 
                         if (guesses === 1) {
-                            if (help - 10 < 0) {
+                            if (help - 20 < 0) {
                                 hints.append("The atomic number is in between 1 and 20.\n")
                             }
-                            else if (help + 10 > 118) {
+                            else if (help + 20 > 118) {
                                 hints.append("The atomic number is in between 98 and 118.\n")
                             }
                             else {

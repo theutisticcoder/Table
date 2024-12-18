@@ -276,7 +276,11 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                                 hints.append("The element's abbrevieation starts with " + answer.split(",")[1].substr(0,1))
                                 return
                             }
-                            if(group > 4){
+                            if(group === 8){
+                                hints.append("the atom is already stable");
+
+                            }
+                            else if(group > 4){
                             hints.append("the atom will gain " + (8 - group) + " electrons");
 
                         }

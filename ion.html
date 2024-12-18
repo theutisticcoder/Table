@@ -188,7 +188,10 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             }
                         }
                         if (guesses === 2) {
-                            if (covalentElements.includes(answer.split(",")[0])) help = "the atom would forms a covalent bond";
+                            if(representativeElements.includes(answer.split(",")[0])){
+                                help = "the atom is not a representative element."
+                            }
+                            else if (covalentElements.includes(answer.split(",")[0])) help = "the atom would forms a covalent bond";
                             else if (cations.includes(answer.split(",")[0])) help = "the atom would become a cation";
                             else help = "the atom would become an anion";
                             hints.append(help)
@@ -292,7 +295,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             hints.append("the element will share electrons with another ion to get a full set of eight valence electrons")
                         }
                         }
-                        if (guesses < 8) {
+                        if (guesses <= 8) {
 
                             current = current.cloneNode();
                             current.onkeydown = (e) => {

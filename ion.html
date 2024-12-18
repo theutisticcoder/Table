@@ -188,12 +188,13 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             }
                         }
                         if (guesses === 2) {
-                            if(representativeElements.includes(answer.split(",")[0])){
+                            if(representativeElements.includes(answer.split(",")[1])){
                                 help = "the atom is not a representative element."
                             }
-                            else if (covalentElements.includes(answer.split(",")[0])) help = "the atom would forms a covalent bond";
-                            else if (cations.includes(answer.split(",")[0])) help = "the atom would become a cation";
-                            else help = "the atom would become an anion";
+                            else if (covalentElements.includes(answer.split(",")[1])) help = "the atom would forms a covalent bond";
+                            else if (cations.includes(answer.split(",")[1])) help = "the atom would become a cation";
+                            else if (cations.includes(answer.split(",")[1])) help = "the atom would become an anion";
+                            else help = "the atom would is a noble gas or is not a representative element";
                             hints.append(help)
                         }
                         if (guesses === 3) {

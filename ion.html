@@ -187,7 +187,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                                 hints.append("The atomic number is in between " + (help - num) + " and " + (help + (20 - num)) + ".\n")
                             }
                         }
-                        if (guesses === 2) {
+                        if (guesses === 3) {
                             if(representativeElements.includes(answer.split(",")[1])){
                                 help = "the atom is not a representative element."
                             }
@@ -197,7 +197,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             else help = "the atom would is a noble gas or is not a representative element";
                             hints.append(help)
                         }
-                        if (guesses === 3) {
+                        if (guesses === 5) {
                             if (period1.includes(answer.split(",")[0])) {
                                 period = 1
                             }
@@ -251,7 +251,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
 
                             }
                         }
-                        if (guesses === 5) {
+                        if (guesses === 2) {
                             if (group1.includes(answer.split(",")[1])) {
                                 group = 1
                             }

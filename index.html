@@ -9,9 +9,19 @@
         html{
             background: darkslategray;
         }
-        button{
+        #atom{
             text-align: center;
             font-size: 50pt;
+            position: absolute;
+            left: 35vw;
+            color: white;
+            background-color: navy;
+        }
+        #ion{
+            text-align: center;
+            font-size: 50pt;
+            position: absolute;
+            left: 35vw;
             color: white;
             background-color: navy;
         }
@@ -25,7 +35,8 @@
 <body>
     <h1>Click the version you want to play...</h1>
     <br>
-    <button onclick = "window.open('atom.html')">Guess Atoms</button>
-    <button onclick = "window.open('ion.html')">Guess Ions</button>
+    <button id="atom" onclick = "window.open('atom.html')">Guess Atoms</button>
+    <br>
+    <button id="ion" onclick = "window.open('ion.html')">Guess Ions</button>
 </body>
 </html>

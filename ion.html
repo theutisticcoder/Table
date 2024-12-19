@@ -155,6 +155,8 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                 var els = []
                 parts.forEach(part => {
                     els.push(part.split(",")[0].toLowerCase());
+                    els.push(part.split(",")[1].toLowerCase());
+
                 })
                 answer = parts[Math.floor(Math.random() * parts.length)];
                 checkbtn.onclick = () => {

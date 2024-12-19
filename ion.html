@@ -221,7 +221,7 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             }
                             hints.append("The element is in period " + period + "\n")
                         }
-                        else if (guesses === 4) {
+                         if (guesses === 4) {
                             const transitionElements = [
                                 "Scandium", "Titanium", "Vanadium", "Chromium", "Manganese",
                                 "Iron", "Cobalt", "Nickel", "Copper", "Zinc", "Yttrium",
@@ -252,32 +252,32 @@ const covalentElements = ['C', 'Si', 'Ge', 'N', 'P', 'As', 'O', 'S', 'Se', 'F', 
                             }
                         }
                         if (guesses === 5) {
-                            if (group1.includes(answer.split(",")[0])) {
+                            if (group1.includes(answer.split(",")[1])) {
                                 group = 1
                             }
-                            if (group2.includes(answer.split(",")[0])) {
+                            if (group2.includes(answer.split(",")[1])) {
                                 group = 2
                             }
-                            if (group13.includes(answer.split(",")[0])) {
+                            if (group13.includes(answer.split(",")[1])) {
                                 group = 3
                             }
-                            if (group14.includes(answer.split(",")[0])) {
+                            if (group14.includes(answer.split(",")[1])) {
                                 group = 4
                             }
-                            if (group15.includes(answer.split(",")[0])) {
+                            if (group15.includes(answer.split(",")[1])) {
                                 group = 5
                             }
-                            if (group16.includes(answer.split(",")[0])) {
+                            if (group16.includes(answer.split(",")[1])) {
                                 group = 6
                             }
                             if (group17.includes(answer.split(",")[0])) {
                                 group = 7
                             }
-                            if (group18.includes(answer.split(",")[0])) {
+                            if (group18.includes(answer.split(",")[1])) {
                                 group = 8
                             }
                             else{
-                                hints.append("The element's abbrevieation starts with " + answer.split(",")[1].substr(0,1))
+                                hints.append("The element's abbreviation starts with " + answer.split(",")[1].substr(0,1))
                                 return
                             }
                             if(group === 8){

@@ -129,7 +129,7 @@
                         return;
                     }
                     guesses++;
-                    if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase()) {
+                    if (answer.split(",")[0].toLowerCase() === current.value.toLowerCase() || answer.split(",")[1].toLowerCase() === current.value.toLowerCase()) {
                         current.style.background = "#83BC67";
                         checkbtn.disabled = true;
                         current.readOnly = true;
